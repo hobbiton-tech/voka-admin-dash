@@ -1,0 +1,77 @@
+<div class="modal-header">
+  <h4 class="modal-title">{{title}}</h4>
+  <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <form id="newAgentForm" name="newAgentForm" class="needs-validation" (ngSubmit)="validSubmit()"
+    [formGroup]="newAgentForm">
+    <!-- Partner Details -->
+    <h5 class="h5">Partner's Details</h5>
+    <div class="d-flex flex-row justify-content-between">
+      <!-- Name -->
+      <div class="form-group w-100">
+        <label for="name">Name<span class="text-danger">*</span></label>
+        <input type="text" name="name" formControlName="name" placeholder="Partner's full name" class="form-control"
+          [ngClass]="{'is-invalid': submit && form.name.errors}">
+        <div *ngIf="submit && form.name.errors" class="invalid-feedback">
+          <span *ngIf="form.name.errors.required">Please enter a name.</span>
+        </div>
+      </div>
+      <!-- End first name -->
+    </div>
+
+    <div class="d-flex flex-row justify-content-between">
+      <!-- Phone Number -->
+      <div class="form-group w-50">
+        <label for="phone_number">Phone Number<span class="text-danger">*</span></label>
+        <input type="text" name="phone_number" formControlName="phone_number" placeholder="2609xxxxxxxx"
+          class="form-control" [ngClass]="{'is-invalid': submit && form.phone_number.errors}">
+        <div *ngIf="submit && form.phone_number.errors" class="invalid-feedback">
+          <span *ngIf="form.phone_number.errors.required">Please enter a phone number.</span>
+          <span *ngIf="form.phone_number.errors.pattern">Please enter a valid phone number.</span>
+        </div>
+      </div>
+      <!-- End phone number -->
+
+      <!-- Email -->
+      <div class="form-group w-50 ml-4">
+        <label for="email">Email<span class="text-danger">*</span></label>
+        <input type="text" name="email" formControlName="email" placeholder="Partner's email address"
+          class="form-control" [ngClass]="{'is-invalid': submit && form.email.errors}">
+        <div *ngIf="submit && form.email.errors" class="invalid-feedback">
+          <span *ngIf="form.email.errors.required">Please enter an email.</span>
+          <span *ngIf="form.email.errors.pattern">Please enter a valid email.</span>
+        </div>
+      </div>
+      <!-- End email -->
+    </div>
+
+    <div class="d-flex flex-row justify-content-between">
+
+    </div>
+
+    <!-- End agent details -->
+    <hr>
+    <!-- Account details -->
+    <h5 class="h5">Account Details</h5>
+    <div class="d-flex flex-row justify-content-between">
+      <!-- Account PIN -->
+      <div class="form-group w-50">
+        <label for="password">Account Password<span class="text-danger">*</span></label>
+        <input type="password" name="password" formControlName="password" placeholder="Partners's access password"
+          class="form-control" [ngClass]="{'is-invalid': submit && form.password.errors}">
+        <div *ngIf="submit && form.password.errors" class="invalid-feedback">
+          <span *ngIf="form.password.errors.required">Please enter a Password.</span>
+          <!-- <span *ngIf="form.password.errors.pattern">Please enter a valid PIN.</span> -->
+        </div>
+      </div>
+      <!-- End account PIN -->
+    </div>
+  </form>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-outline-secondary" (click)="activeModal.dismiss()">Cancel</button>
+  <button form="newAgentForm" type="submit" class="btn btn-secondary">Add Partner</button>
+</div>
